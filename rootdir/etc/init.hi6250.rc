@@ -5,6 +5,10 @@ on init
     symlink /dev/block/platform/${ro.boot.boot_devices} /dev/block/bootdevice
 
 on post-fs-data
+    mkdir /data/sec_storage_data 0700 system system
+    restorecon /data/sec_storage_data
+    mkdir /data/sec_storage_data_users 0700 system system
+    restorecon /data/sec_storage_data_users
     start teecd
 
 on property:ro.lineage.device=*
